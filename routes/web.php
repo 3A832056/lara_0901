@@ -22,10 +22,10 @@ Route::get('posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('posts/{id}', [PostsController::class, 'show'])->name('posts.show');
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/', ['as' => 'admin.dashboard.index', 'uses' => 'AdminDashboardController@index']);
-    Route::get('posts'          , ['as' => 'admin.posts.index' , 'uses' => 'AdminPostsController@index']);
-    Route::get('posts/create'   , ['as' => 'admin.posts.create' , 'uses' => 'AdminPostsController@create']);
-    Route::get('posts/{id}/edit', ['as' => 'admin.posts.edit'   , 'uses' => 'AdminPostsController@edit']);
+    Route::get('/',[AdminPostsController::class,'index'])->name( 'admin.dashboard.index');
+    Route::get('posts',[AdminPostsController::class,'index'])->name( 'admin.posts.index');
+    Route::get('posts/create',[AdminPostsController::class,'create'])->name('admin.posts.create');
+    Route::get('posts/{id}/edit',[AdminPostsController::class,'edit'])->name('admin.posts.edit');
+    Route::post('posts',[AdminPostsController::class,'store'])->name('admin.posts.store');
 
-    Route::post('posts', [AdminPostsController::class, 'store'])->name('admin.posts.store');
 });
