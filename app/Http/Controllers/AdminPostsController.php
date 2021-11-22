@@ -29,4 +29,11 @@ public function create()
         return redirect()->route('admin.posts.index');
     }
 
+public function update(Request $request,$id)
+{
+    $post =Post::find($id);
+    $post->update($request->all());
+    returnredirect()->route('admin.posts.index');
+}
+
 }
