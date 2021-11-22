@@ -23,9 +23,11 @@ Route::get('posts/{id}', [PostsController::class, 'show'])->name('posts.show');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/',[AdminPostsController::class,'index'])->name( 'admin.dashboard.index');
+
     Route::get('posts',[AdminPostsController::class,'index'])->name( 'admin.posts.index');
     Route::get('posts/create',[AdminPostsController::class,'create'])->name('admin.posts.create');
     Route::get('posts/{id}/edit',[AdminPostsController::class,'edit'])->name('admin.posts.edit');
-    Route::post('posts',[AdminPostsController::class,'store'])->name('admin.posts.store');
 
+    Route::post('posts',[AdminPostsController::class,'store'])->name('admin.posts.store');
+    Route::patch('posts/{post}', [AdminPostsController::class, 'update'])->name('admin.posts.update');
 });
